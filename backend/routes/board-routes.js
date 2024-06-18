@@ -8,12 +8,33 @@ const prisma = new PrismaClient();
 
 
 routes.get('/', async (req, res) => {
-    return res.json({message: 'Hello World, the filter route works'});
+    const boards = await prisma.board.findMany(
+        {
+            include: { cards: true }
+        }
+    );
+    return res.json(boards);
 });
 
 routes.get('/:board_id', async (req, res) => {
-    const board_id = req.params.board_id;
-    return res.json({message: `Hello World, the board page for id= ${board_id} works`});
+    const board_id = parseInt(req.params.board_id);
+
+    const board = await prisma.board.findUnique({
+        where: {
+            id: board_id
+        },
+        include: { cards: true }
+    });
+
+    return res.json(board);
+});
+
+routes.post('/', async (req, res) => {
+    const {title, mediaUrl, description, categoryId, authorId } = req.body;
+
+    console.log(req.body);
+
+    return res.json(req.body);
 });
 
 module.exports = routes;

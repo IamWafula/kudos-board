@@ -7,13 +7,34 @@ const {PrismaClient, Prisma}= require('@prisma/client');
 const prisma = new PrismaClient();
 
 
-routes.get('/', async (req, res) => {
-    return res.json({message: 'Hello World, the filter route works'});
+/*
+    Since comments are already loaded in the cards route, all we need to do is make post requests for a new comment
+*/
+
+
+routes.post('/', async (req, res) => {
+
+    // using let since variable is parsed to Int later
+    let {text, author, card} = req.body;
+    author = parseInt(author);
+    card = parseInt(card);
+
+    const new_comment = await prisma.comment.create({
+        data: {
+            text,
+            authorId : author,
+            cardId : card
+        }
+    });
+
+    return res.json(req.body);
 });
 
-routes.get('/:board_id', async (req, res) => {
-    const board_id = req.params.board_id;
-    return res.json({message: `Hello World, the board page for id= ${board_id} works`});
+routes.get('/all', async (req, res) => {
+    console.log(req);
+    const all_comments = await prisma.comment.findMany();
+
+    return res.json(all_comments);
 });
 
 module.exports = routes;

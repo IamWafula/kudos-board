@@ -9,12 +9,6 @@ const prisma = new PrismaClient();
 const { NotFoundError, ExistingUserError,  } = require('../middleware/CustomErrors');
 
 
-
-routes.get('/', async (req, res) => {
-    return res.json({message: 'Hello World, the filter route works'});
-});
-
-
 // const categories = await prisma.category.findMany(
 //     {
 //         where: {
@@ -32,6 +26,14 @@ routes.get('/', async (req, res) => {
 //         }
 //     }
 // );
+
+// unsafe route, remove in production
+routes.get('/', async (req, res) => {
+    const users = await prisma.user.findMany({
+        include: { boards: true, comments: true , cards : true }
+    });
+    return res.json(users);
+});
 
 
 
