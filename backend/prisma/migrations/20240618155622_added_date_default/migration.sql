@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Board" ALTER COLUMN "date_published" SET DEFAULT CURRENT_TIMESTAMP;

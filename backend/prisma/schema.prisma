@@ -27,8 +27,9 @@ model User{
 model Board {
   id Int @id @default(autoincrement())
   title String
+  mediaUrl   String @default("https://uploads.dailydot.com/2018/10/olli-the-polite-cat.jpg?auto=compress&fm=pjpg")
   description String
-  date_published DateTime
+  date_published DateTime @default(now())
   category Category @relation(fields: [categoryId], references: [id])
   categoryId Int
   author User @relation(fields: [authorId], references: [id])
@@ -46,7 +47,9 @@ model Category{
 model Card {
   id       Int  @id @default(autoincrement())
   text     String
-  upvotes  Int
+  gifUrl   String @default("https://uploads.dailydot.com/2018/10/olli-the-polite-cat.jpg?auto=compress&fm=pjpg")
+  date_published DateTime @default(now())
+  upvotes  Int @default(0)
   author   User? @relation(fields: [authorId], references: [id])
   authorId Int? // relation scalar field  (used in the `@relation` attribute above)
   board    Board @relation(fields: [boardId], references: [id])
@@ -62,4 +65,5 @@ model Comment {
   authorId Int
   card Card @relation(fields: [cardId], references: [id])
   cardId Int
+  date_published DateTime @default(now())
 }
