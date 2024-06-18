@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User{
+  id Int @id @default(autoincrement())
+  name String
+  boards Board[]
+  cards Card[]
+  comments Comment[]
+
+  @@unique([name])
+}
+
+model Board {
+  id Int @id @default(autoincrement())
+  title String
+  description String
+  date_published DateTime
+  category Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+  author User @relation(fields: [authorId], references: [id])
+  authorId Int
+  cards Card[]
+}
+
+model Category{
+  id Int @id @default(autoincrement())
+  name String
+  boards Board[]
+}
+
+
+model Card {
+  id       Int  @id @default(autoincrement())
+  text     String
+  upvotes  Int
+  author   User? @relation(fields: [authorId], references: [id])
+  authorId Int? // relation scalar field  (used in the `@relation` attribute above)
+  board    Board @relation(fields: [boardId], references: [id])
+  boardId Int
+  comments Comment[]
+}
+
+
+model Comment {
+  id       Int  @id @default(autoincrement())
+  text String
+  author User @relation(fields: [authorId], references: [id])
+  authorId Int
+  card Card @relation(fields: [cardId], references: [id])
+  cardId Int
+}
