@@ -25,9 +25,9 @@ async function getAllBoards(){
   }
 
   const allBoards = await fetch(url, options)
-  console.log(allBoards)
   const resJson = await allBoards.json()
 
+  console.log(allBoards)
 
   return resJson
 }

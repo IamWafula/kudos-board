@@ -15,6 +15,7 @@ const boardRoutes = require('./routes/board-routes.js');
 const cardRoutes = require('./routes/card-routes.js');
 const commentRoutes = require('./routes/comment-routes.js');
 const userRoutes = require('./routes/user-routes.js');
+const categoryRoutes = require('./routes/user-routes.js')
 
 
 // error handling
@@ -36,6 +37,7 @@ app.use('/board', boardRoutes);
 app.use('/cards', cardRoutes);
 app.use('/comments', commentRoutes);
 app.use('/users',userRoutes);
+app.use('/category',categoryRoutes )
 
 // error handling
 app.use((req, res, next) => {
