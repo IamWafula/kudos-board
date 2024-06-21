@@ -14,27 +14,38 @@ const prisma = new PrismaClient();
 
 routes.post('/', async (req, res) => {
 
-    // using let since variable is parsed to Int later
-    let {text, author, card} = req.body;
-    author = parseInt(author);
-    card = parseInt(card);
+    try {
+        // using let since variable is parsed to Int later
+        let {text, author, card} = req.body;
+        author = parseInt(author);
+        card = parseInt(card);
 
-    const new_comment = await prisma.comment.create({
-        data: {
-            text,
-            authorId : author,
-            cardId : card
-        }
-    });
+        const new_comment = await prisma.comment.create({
+            data: {
+                text,
+                authorId : author,
+                cardId : card
+            }
+        });
 
-    return res.json(req.body);
+        return res.json(req.body);
+    } catch (e) {
+        console.log(e)
+    }
+
+
 });
 
 routes.get('/all', async (req, res) => {
-    console.log(req);
-    const all_comments = await prisma.comment.findMany();
+    try {
+        console.log(req);
+        const all_comments = await prisma.comment.findMany();
 
-    return res.json(all_comments);
+        return res.json(all_comments);
+    } catch (e) {
+        console.log(e)
+    }
+
 });
 
 module.exports = routes;

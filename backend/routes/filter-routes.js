@@ -28,39 +28,46 @@ routes.get('/', async (req, res) => {
 
 
 routes.get('/:filter', async (req, res, next) => {
-    const filter = req.params.filter;
-    let queryResults = {}
 
-    // a better way to do this is with a dictionary
-    if (filter == 'recent') {
-        queryResults = await prisma.board.findMany({
-            orderBy: { date_published : 'desc' },
-            include: {cards : true}
-        })
-    } else if (filter == 'celebration') {
-        queryResults = await prisma.board.findMany({
-            where: { categoryId: 1 },
-            include: {cards : true}
-        })
-    } else if (filter == 'inspiration') {
-        queryResults = await prisma.board.findMany({
-            where: { categoryId: 3 },
-            include: {cards : true}
-        })
-    } else if (filter == 'thanks') {
-        queryResults = await prisma.board.findMany({
-            where: { categoryId: 2 },
-            include: {cards : true}
-        })
-    } else if (filter == 'all') {
-        queryResults = await prisma.board.findMany({
-            include: {cards : true}
-        })
-    } else {
-        next(new NotFoundError)
+
+    try {
+        const filter = req.params.filter;
+        let queryResults = {}
+
+        // a better way to do this is with a dictionary
+        if (filter == 'recent') {
+            queryResults = await prisma.board.findMany({
+                orderBy: { date_published : 'desc' },
+                include: {cards : true}
+            })
+        } else if (filter == 'celebration') {
+            queryResults = await prisma.board.findMany({
+                where: { categoryId: 1 },
+                include: {cards : true}
+            })
+        } else if (filter == 'inspiration') {
+            queryResults = await prisma.board.findMany({
+                where: { categoryId: 3 },
+                include: {cards : true}
+            })
+        } else if (filter == 'thanks') {
+            queryResults = await prisma.board.findMany({
+                where: { categoryId: 2 },
+                include: {cards : true}
+            })
+        } else if (filter == 'all') {
+            queryResults = await prisma.board.findMany({
+                include: {cards : true}
+            })
+        } else {
+            next(new NotFoundError)
+        }
+
+        return res.json(queryResults);
+    } catch(e) {
+        console.log(e)
     }
 
-    return res.json(queryResults);
 
 });
 

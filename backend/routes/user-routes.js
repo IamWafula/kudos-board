@@ -9,57 +9,57 @@ const prisma = new PrismaClient();
 const { NotFoundError, ExistingUserError,  } = require('../middleware/CustomErrors');
 
 
-// const categories = await prisma.category.findMany(
-//     {
-//         where: {
-//             articles: {
-//                 some: {
-//                     categoryId: {gt: 0}
-//                 }
-//             }
-//         },
-//         include: {
-//             articles: true
-//         },
-//         orderBy: {
-//             name: 'asc'
-//         }
-//     }
-// );
-
 // unsafe route, remove in production
 routes.get('/', async (req, res) => {
-    const users = await prisma.user.findMany({
-        include: { boards: true, comments: true , cards : true }
-    });
-    return res.json(users);
+
+    try {
+        const users = await prisma.user.findMany({
+            include: { boards: true, comments: true , cards : true }
+        });
+        return res.json(users);
+    } catch (e) {
+        console.log(e)
+    }
+
+
 });
 
 routes.get('/username/:username', async (req, res) => {
-    const user = await prisma.user.findUnique({
-        where: { name: req.params.username}
-    });
-    return res.json(user);
+    try
+    {
+        const user = await prisma.user.findUnique({
+            where: { name: req.params.username}
+        });
+        return res.json(user);
+    }catch(e) {
+        console.log(e)
+    }
 });
 
 
 
 routes.get('/:id', async (req, res) => {
-    const user_id = parseInt(req.params.id);
 
-    const user_info = await prisma.user.findUnique({
-        where: {  id: user_id },
-        include: { boards: true }
-    });
+    try {
+        const user_id = parseInt(req.params.id);
+        const user_info = await prisma.user.findUnique({
+            where: {  id: user_id },
+            include: { boards: true }
+        });
 
-    return res.json(user_info);
+        return res.json(user_info);
+    } catch (e) {
+        console.log(e)
+    }
+
 });
 
 
 routes.post('/', async (req, res, next) => {
-    const name = req.body.name;
 
     try {
+        const name = req.body.name;
+
         const user = await prisma.user.create({
             data: {
                 name: `${name}`,
