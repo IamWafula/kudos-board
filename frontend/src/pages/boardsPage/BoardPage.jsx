@@ -146,6 +146,8 @@ function BoardPage (props) {
   return (
     <div id={styles.boardContent}>
 
+        <h2 id={styles.kudos}>COODOS Board</h2>
+
         {
           showNewBoard && (
             <NewBoard setShowNewBoard={setShowNewBoard} addNewBoard={addNewBoard} user={user} />
@@ -168,17 +170,16 @@ function BoardPage (props) {
           <p>{user.name}</p>
           {
             (user.name == "Guest") && (
-              <p onClick={()=> {setShowLogin(true)}}> Login </p>
+              <p onClick={()=> {setShowLogin(true)}} id={ (user.id ? styles.signout : styles.login) }> Login </p>
             )
           }
 
           {
             (user.name != "Guest") && (
-              <p onClick={()=> {setUser({name: "Guest", id: null})}}>
+              <p onClick={()=> {setUser({name: "Guest", id: null})}} id={ (user.id ? styles.signout : styles.login) }  >
                 Signout
               </p>
             )
-
           }
         </div>
         <Search id={styles.search} setSearchTerm={setSearchTerm} setFilter={setFilter} />
@@ -186,7 +187,7 @@ function BoardPage (props) {
 
           {
             user.id && (
-              <button onClick={() => setShowNewBoard(true)} style={{ height: "200px"}}> new board </button>
+              <button onClick={() => setShowNewBoard(true)} style={{ height: "100px"}}> new board </button>
             )
           }
 
@@ -195,8 +196,9 @@ function BoardPage (props) {
               return( <Board key={board.id} setCardPage={setCardPageDetails} img={board.mediaUrl} description={board.description} board_id={board.id} cards={board.cards} authorId={board.authorId} setDeleted={setDeleted} user={user} title={board.title}/> )
             })
           }
+
         </div>
-        <div id={styles.footer}> Footer </div>
+        <div id={styles.footer}> Kudos-Board Project : Ian Wafula @ 2024 </div>
       </div>
   )
 }

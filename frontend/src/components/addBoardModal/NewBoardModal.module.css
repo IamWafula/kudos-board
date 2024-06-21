@@ -7,12 +7,21 @@
     justify-content: center;
     background-color: rgba(128, 128, 128, 0.332);
     align-items: center;
+
+
+    input {
+        border-radius: 20px;
+        border: 1px solid;
+        padding: 10px 0 10px 10px;
+        background-color: rgba(253, 254, 255, 0.294);
+    }
 }
 
 #board_content {
     height: 80%;
     width: 80%;
     background-color: black;
+    border-radius: 20px;
 
 
     display: grid;
@@ -21,7 +30,7 @@
         "results results results"
         ". title ."
         ". description ."
-        ". submit ."
+        "submit submit submit"
     ;
 
     grid-template-columns: 0.5fr 2fr 0.5fr;
@@ -30,6 +39,16 @@
 
 #title_category {
     grid-area: title;
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding-top: 10px;
+
+    select {
+        background-color: white;
+        color: black;
+    }
 }
 
 #search {
@@ -76,9 +95,22 @@
     input {
         height: 80%;
         width: 100%;
+
     }
 }
-#submit { grid-area: submit }
+
+
+#submit {
+    grid-area: submit;
+    display: flex;
+    justify-content: center;
+
+    button {
+        width: 200px;
+        border-radius: 20px;
+    }
+    padding-bottom: 20px;
+}
 #close_btn{
     grid-area: close;
 

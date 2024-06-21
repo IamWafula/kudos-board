@@ -10,7 +10,7 @@
 }
 
 #modal_content {
-    height: 50%;
+    height: 60%;
     width: 50%;
     background-color: black;
     align-items: center;
@@ -31,8 +31,16 @@
     grid-area: error;
 }
 
+.activeError  {
+    color: red;
+    font-weight: 1000;
+}
+
 #close_btn {
     grid-area: close;
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
 
     svg{
         float: right;
@@ -42,15 +50,16 @@
     }
 }
 
-#username {
-    grid-area: username;
+#username {grid-area: username;}
+#pwd {grid-area: pwd;}
+
+#username, #pwd {
     height: 20%;
     width: 80%;
-}
-#pwd {
-    grid-area: pwd;
-    height: 20%;
-    width: 80%;
+    border-radius: 20px;
+    border: 1px solid;
+    padding: 10px 0 10px 10px;
+    background-color: rgba(240, 248, 255, 0.294);
 }
 #login {
     grid-area: login;
@@ -58,5 +67,6 @@
 #signup { grid-area: signup; }
 
 #login , #signup {
-    width: 200px
+    width: 150px;
+    padding: 15px 0 15px 0;
 }

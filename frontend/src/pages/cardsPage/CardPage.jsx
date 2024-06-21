@@ -59,6 +59,9 @@ function CardPage(props) {
 
     const location = useLocation();
 
+    // navigator states
+    const [goHome, setGoHome] = useState(false)
+
     useEffect(() => {
         if (location.state){
             setBoard(location.state)
@@ -77,11 +80,26 @@ function CardPage(props) {
     return (
         <div id={styles.cardPage} >
 
+            <h2 id={styles.kudos}>COODOS Board</h2>
+
+            <div id={styles.topbar}>
+                <ul>
+                    <li onClick={() => {setGoHome(true)}} >Home</li>
+                </ul>
+            </div>
+
+
             {/* realized that new boards have issue with undefined id, redirect to main page just incase */}
             {
             !board && !location.state.board_id && (
                 <Navigate to="/boards"/>
             )
+            }
+
+            {
+                (goHome) && (
+                    <Navigate to="/boards"/>
+                )
             }
 
             {
@@ -104,21 +122,21 @@ function CardPage(props) {
             )
             }
 
+
             <div id={styles.header}>
                 <p>{user.name}</p>
                 {
                     (user.name == "Guest") && (
-                    <p onClick={()=> {setShowLogin(true)}}> Login </p>
+                    <p onClick={()=> {setShowLogin(true)}} id={ (user.id ? styles.signout : styles.login) }> Login </p>
                     )
                 }
 
                 {
                     (user.name != "Guest") && (
-                    <p onClick={()=> {setUser({name: "Guest", id: null})}}>
+                    <p onClick={()=> {setUser({name: "Guest", id: null})}} id={ (user.id ? styles.signout : styles.login) }  >
                         Signout
                     </p>
                     )
-
                 }
             </div>
             <div id={styles.board}>
@@ -138,7 +156,7 @@ function CardPage(props) {
                 )}
              </div>
 
-            <div id={styles.footer}>footer</div>
+            <div id={styles.footer}> Kudos-Board Project : Ian Wafula @ 2024 </div>
         </div>
     )
 }

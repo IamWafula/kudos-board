@@ -27,8 +27,6 @@ async function getAllBoards(){
   const allBoards = await fetch(url, options)
   const resJson = await allBoards.json()
 
-  console.log(allBoards)
-
   return resJson
 }
 
@@ -46,6 +44,10 @@ function Home (props) {
   const [allBoards, setAllBoards] = useState([])
 
 
+  // navigator states
+  const [goHome, setGoHome] = useState(false)
+
+
   useEffect(() =>{
     getAllBoards()
       .then(data => {
@@ -55,21 +57,24 @@ function Home (props) {
 
 return (
     <div id={styles.homeContent}>
+
+        <h1 id={styles.kudos}>COODOS
+        Board</h1>
+
         <div id={styles.header}>
           <p>{user.name}</p>
           {
             (user.name == "Guest") && (
-              <p onClick={()=> {setShowLogin(true)}}> Login </p>
+              <p onClick={()=> {setShowLogin(true)}} id={ (user.id ? styles.signout : styles.login) }> Login </p>
             )
           }
 
           {
             (user.name != "Guest") && (
-              <p onClick={()=> {setUser({name: "Guest", id: null})}}>
+              <p onClick={()=> {setUser({name: "Guest", id: null})}} id={ (user.id ? styles.signout : styles.login) }  >
                 Signout
               </p>
             )
-
           }
         </div>
         {
@@ -98,7 +103,7 @@ return (
             })
           }
         </div>
-        <div id={styles.footer}> Footer </div>
+        <div id={styles.footer}> Kudos-Board Project : Ian Wafula @ 2024 </div>
     </div>
   )
 }

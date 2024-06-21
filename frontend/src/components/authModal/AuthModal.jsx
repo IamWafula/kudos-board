@@ -59,6 +59,7 @@ export default function AuthModal (props) {
     const [message, setMessage] = useState("Enter Account Details")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [error, setError] = useState(false)
 
     const handleClose = () => {
         props.setShowLogin(false)
@@ -96,6 +97,7 @@ export default function AuthModal (props) {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 setMessage("Invalid Credentials")
+                setError(true)
             });
     }
 
@@ -142,7 +144,7 @@ export default function AuthModal (props) {
                     />
                 </div>
 
-                <p id={styles.error}> {message}</p>
+                <p id={styles.error} className={error? styles.activeError: "null"} > {message}</p>
 
                 <input id={styles.username} onChange={handleEmailChange} placeholder="email" />
 

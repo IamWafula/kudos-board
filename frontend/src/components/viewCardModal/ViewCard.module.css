@@ -7,6 +7,13 @@
     justify-content: center;
     background-color: rgba(128, 128, 128, 0.332);
     align-items: center;
+
+    input {
+        border-radius: 20px;
+        border: 1px solid;
+        padding: 10px 0 10px 10px;
+        background-color: rgba(253, 254, 255, 0.294);
+    }
 }
 
 
@@ -22,7 +29,7 @@
         ". new_comment send"
     ;
 
-    grid-template-columns: 1fr 2fr 0.5fr;
+    grid-template-columns: 1fr 3fr 0.5fr;
     grid-template-rows: 0.5fr 4fr 1fr;
 }
 
@@ -37,21 +44,29 @@
     }
 }
 #card { grid-area: card; }
+
+#card_comments::-webkit-scrollbar {
+    display: none;
+}
+
 #card_comments {
     grid-area: comment;
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: scroll;
+    padding-top: 20px;
     gap: 20px;
     overflow-y: scroll;
+    background-color: rgba(220, 220, 220, 0.094);
 }
 #new_comment {
     grid-area: new_comment;
-    padding-top: 20px;
+    padding: 20px;
 
     input {
         width: 90%;
-        height: 80%;
+        height: 70%;
     }
 }
 
@@ -61,4 +76,8 @@
     flex-direction: column;
     justify-content: center;
     padding-right: 20px;
+
+    button{
+        width: 100px;
+    }
 }

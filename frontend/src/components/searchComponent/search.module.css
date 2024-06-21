@@ -9,10 +9,30 @@
     gap: 10px;
     grid-area: search ;
     width: 100%;
-}
 
-input {
-    width: 200px;
+    p{
+        background-color: rgba(86, 86, 86, 0.273);
+        padding: 10px 20px;
+        border-radius: 20px;
+        transition: 0.2s;
+
+    }
+
+    p:hover {
+        background-color: rgba(255, 255, 255, 0.273);
+        scale: 1.1;
+    }
+
+    input {
+        width: 300px;
+        padding: 0 0 10px 0;
+        text-align: center;
+        background: transparent;
+        border: 0;
+        outline: 0;
+        border-bottom: 2px solid gray;
+    }
+
 }
 
 button {
@@ -27,5 +47,10 @@ button {
     p {
         margin: 20px;
         cursor: pointer;
+    }
+
+    #current{
+        background-color: rgba(255, 255, 255, 0.273);
+        scale: 1.1;
     }
 }

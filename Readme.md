@@ -42,8 +42,8 @@ Deployed Application (optional): [Kudos Board Deployed Site](ADD_LINK_HERE)
     - [x]  Anonymous cards or cards by guest users should still be allowed.
   - [x] Add a new filter option on the home page to display only the current user's boards.
   - [x] Allow boards to be deleted only if they are owned by the user.
-- [ ] **Deployment**
-  - [ ] Website is deployed via Render.
+- [x] **Deployment**
+  - [x] Website is deployed via Render.
 - [x] **Comments**
   - [x] Users should be able to comment on cards.
 
