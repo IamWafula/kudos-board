@@ -15,7 +15,7 @@ const boardRoutes = require('./routes/board-routes.js');
 const cardRoutes = require('./routes/card-routes.js');
 const commentRoutes = require('./routes/comment-routes.js');
 const userRoutes = require('./routes/user-routes.js');
-const categoryRoutes = require('./routes/user-routes.js')
+const categoryRoutes = require('./routes/category-routes.js')
 
 
 // error handling

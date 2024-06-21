@@ -7,8 +7,7 @@ const prisma = new PrismaClient();
 const { NotFoundError, ExistingUserError,  } = require('../middleware/CustomErrors');
 
 
-
-routes.get('/:name', async (req, res) => {
+routes.post('/:name', async (req, res) => {
     try {
         const category_name = req.params.name;
 
@@ -21,3 +20,5 @@ routes.get('/:name', async (req, res) => {
         console.log(e)
     }
 })
+
+module.exports = routes;
