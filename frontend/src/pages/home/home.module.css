@@ -1,0 +1,51 @@
+#homeContent {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  align-items: center;
+
+  grid-template-areas:
+    ". . topbar"
+    ". search ."
+    "slide slide slide"
+    "footer footer footer";
+
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 2fr 3fr 1fr;
+
+}
+
+#header {
+  grid-area: topbar ;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 20px
+}
+
+#search {
+  grid-area: search ;
+  width: 100%;
+
+}
+
+#content::-webkit-scrollbar{
+  display: none;
+}
+
+#content {
+  grid-area: slide;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  overflow: scroll;
+  justify-content: center;
+  align-items: flex-start;
+
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+
+}
+
+#footer {grid-area: footer;}

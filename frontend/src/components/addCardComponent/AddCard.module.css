@@ -1,0 +1,87 @@
+#card_modal {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgba(128, 128, 128, 0.332);
+    align-items: center;
+}
+
+#card_content {
+    height: 80%;
+    width: 80%;
+    background-color: black;
+
+
+    display: grid;
+    grid-template-areas:
+        ". search close"
+        "results results results"
+        ". text ."
+        ". submit ."
+    ;
+
+    grid-template-columns: 0.5fr 2fr 0.5fr;
+    grid-template-rows: 1fr 4fr 2fr 1fr;
+}
+
+#text {
+    grid-area: text;
+
+    input {
+        height: 80%;
+        width: 80%;
+    }
+}
+
+#search {
+    grid-area: search;
+    display: flex;
+    justify-content: center;
+    padding: 5% 0 5% 0;
+
+    input { margin-right: 20px ;}
+}
+
+#gif_results::-webkit-scrollbar{
+    display: none;
+}
+
+#gif_results {
+    grid-area: results;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    overflow: scroll;
+
+    -ms-overflow-style: none;  /* Hide scrollbar in IE and Edge */
+    scrollbar-width: none;
+
+}
+
+.gif_image {
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.gif_image:hover {
+    scale: 1.2;
+    border: solid 2px aliceblue;
+}
+
+
+#submit { grid-area: submit }
+#close_btn{
+    grid-area: close;
+
+    svg{
+        float: right;
+        right: 0;
+        margin: 20px 20px 0 0;
+        cursor: pointer;
+    }
+}

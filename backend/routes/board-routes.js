@@ -7,6 +7,11 @@ const {PrismaClient, Prisma}= require('@prisma/client');
 const prisma = new PrismaClient();
 
 
+// cors imports
+// const cors = require('cors')
+
+// routes.use(cors())
+
 routes.get('/', async (req, res) => {
     const boards = await prisma.board.findMany(
         {
@@ -32,9 +37,27 @@ routes.get('/:board_id', async (req, res) => {
 routes.post('/', async (req, res) => {
     const {title, mediaUrl, description, categoryId, authorId } = req.body;
 
-    console.log(req.body);
+    const board = await prisma.board.create({
+        data: {
+            title,
+            mediaUrl,
+            description,
+            categoryId: parseInt(categoryId),
+            authorId : parseInt(authorId)
+        }
+    })
 
     return res.json(req.body);
 });
+
+routes.delete("/:id" , async (req, res) => {
+    const id = parseInt(req.params.id);
+
+    const deleted = await prisma.board.delete({
+        where: { id: id }
+    })
+
+    return res.json({"text": "successful"})
+})
 
 module.exports = routes;

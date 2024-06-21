@@ -1,0 +1,30 @@
+.comment{
+    display: grid;
+    width: 80%;
+    background-color: white;
+    border-radius: 20px;
+
+    grid-template-areas:
+        "text text"
+        ". username"
+    ;
+
+    grid-template-columns: auto;
+    grid-template-rows: auto 40px;
+
+}
+
+
+.text {
+    grid-area: text;
+    color: black;
+    height: fit-content;
+    padding: 0 0 0 20px
+}
+
+.username {
+    grid-area: username;
+    color: black;
+    text-align: right;
+    padding: 0 20px 0 0;
+}

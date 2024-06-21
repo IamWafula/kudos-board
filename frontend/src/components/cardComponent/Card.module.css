@@ -1,0 +1,60 @@
+.card {
+    height: 300px;
+    width: 200px;
+    margin: 0 20px 0 20px;
+
+
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    grid-template-areas:
+        "imageC imageC imageC"
+        "textContent  textContent textContent"
+        "upvotes  upvote upvote  "
+    ;
+    background-color: rgb(75, 75, 75);
+
+    grid-template-columns: 0.5fr 0.5fr 2fr;
+    grid-template-rows: 3fr 1fr 2fr;
+
+    img {
+        width: 100%;
+        grid-area: imageC;
+        border-radius: 0;
+    }
+
+    .actions{
+        grid-area: upvote;
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        flex-wrap: nowrap;
+    }
+
+    svg {
+
+        background-color: aliceblue;
+        padding: 6px;
+        border-radius: 10px;
+    }
+
+}
+
+button {
+    width: 100px;
+    text-align: center;
+    padding: 5px;
+}
+
+
+
+.text {
+    grid-area: textContent;
+    padding: 0 10px 0 10px;
+}
+.upvotes {
+    grid-area: upvotes;
+    padding: 0 10px 0 10px;
+}
+.upvote { grid-area: upvote; }
+.comment { grid-area: comment; }

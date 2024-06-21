@@ -42,8 +42,19 @@ routes.post('/', async (req, res) => {
         }
     });
 
+
     return res.json(card);
 });
+
+routes.delete("/:id" , async (req, res) => {
+    const id = parseInt(req.params.id);
+
+    const deleted = await prisma.card.delete({
+        where: { id: id }
+    })
+
+    return res.json({"text": "successful"})
+})
 
 
 module.exports = routes;

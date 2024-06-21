@@ -1,0 +1,44 @@
+#boardContent {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  align-items: center;
+
+  grid-template-areas:
+    ". . topbar"
+    ". search ."
+    ". slide ."
+    "footer footer footer";
+
+  grid-template-columns: 1fr 5fr 1fr;
+  grid-template-rows: 0.5fr 0.5fr 5fr 0.5fr;
+
+
+  #header {
+    grid-area: topbar ;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 20px
+  }
+
+  #search {
+    grid-area: search ;
+
+  }
+  #content {
+    grid-area: slide;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    .main_board {
+      margin: 20px;
+    }
+  }
+  #footer {grid-area: footer;}
+
+}

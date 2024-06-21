@@ -1,0 +1,64 @@
+#card_modal {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgba(128, 128, 128, 0.332);
+    align-items: center;
+}
+
+
+#card_content {
+    height: 80%;
+    width: 80%;
+    background-color: black;
+
+    display: grid;
+    grid-template-areas:
+        ". . close"
+        "card comment ."
+        ". new_comment send"
+    ;
+
+    grid-template-columns: 1fr 2fr 0.5fr;
+    grid-template-rows: 0.5fr 4fr 1fr;
+}
+
+#close_btn {
+    grid-area: close;
+
+    svg{
+        float: right;
+        right: 0;
+        margin: 20px 20px 0 0;
+        cursor: pointer;
+    }
+}
+#card { grid-area: card; }
+#card_comments {
+    grid-area: comment;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    overflow-y: scroll;
+}
+#new_comment {
+    grid-area: new_comment;
+    padding-top: 20px;
+
+    input {
+        width: 90%;
+        height: 80%;
+    }
+}
+
+#send_btn {
+    grid-area: send;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 20px;
+}

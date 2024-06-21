@@ -4,6 +4,12 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT;
 
+const cors = require('cors');
+
+// cors stuff
+app.use(cors());
+app.use(express.json());
+
 const filterRoutes = require('./routes/filter-routes.js');
 const boardRoutes = require('./routes/board-routes.js');
 const cardRoutes = require('./routes/card-routes.js');
@@ -14,11 +20,9 @@ const userRoutes = require('./routes/user-routes.js');
 // error handling
 const { NotFoundError, ExistingUserError } = require('./middleware/CustomErrors.js');
 
-// cors stuff
-const cors = require('cors');
+
 const req = require('express/lib/request.js');
-app.use(cors());
-app.use(express.json());
+
 
 
 app.get('/', (req, res) => {
@@ -31,7 +35,7 @@ app.use('/filter', filterRoutes);
 app.use('/board', boardRoutes);
 app.use('/cards', cardRoutes);
 app.use('/comments', commentRoutes);
-app.use('/users', userRoutes);
+app.use('/users',userRoutes);
 
 // error handling
 app.use((req, res, next) => {
