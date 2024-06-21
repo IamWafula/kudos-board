@@ -9,66 +9,91 @@ const prisma = new PrismaClient();
 
 routes.get('/search/:board_name', async (req, res) => {
 
-    const search_term = req.params.board_name;
+    try{
+        const search_term = req.params.board_name;
+        const boards = await prisma.board.findMany(
 
-    const boards = await prisma.board.findMany(
+            {where: {
+                title : {
+                    search: search_term
+                }
+             }}
+        );
+        return res.json(boards);
+    } catch (e) {
+        console.log(e)
+    }
 
-        {where: {
-            title : {
-                search: search_term
-            }
-         }}
-    );
-    return res.json(boards);
 });
 
 routes.get('/', async (req, res) => {
-    const boards = await prisma.board.findMany(
-        {
-            include: { cards: true }
-        }
-    );
-    return res.json(boards);
+    try {
+        const boards = await prisma.board.findMany(
+            {
+                include: { cards: true }
+            }
+        );
+        return res.json(boards);
+    }
+    catch (e) {
+        console.log(e)
+    }
+
 });
 
 
 routes.get('/:board_id', async (req, res) => {
-    const board_id = parseInt(req.params.board_id);
+    try {
+       const board_id = parseInt(req.params.board_id);
 
-    const board = await prisma.board.findUnique({
-        where: {
-            id: board_id
-        },
-        include: { cards: true }
-    });
+        const board = await prisma.board.findUnique({
+            where: {
+                id: board_id
+            },
+            include: { cards: true }
+        });
 
-    return res.json(board);
+        return res.json(board);
+    } catch (e) {
+        console.log(e)
+    }
+
+
 });
 
 routes.post('/', async (req, res) => {
-    const {title, mediaUrl, description, categoryId, authorId } = req.body;
+    try {
+        const {title, mediaUrl, description, categoryId, authorId } = req.body;
 
-    const board = await prisma.board.create({
-        data: {
-            title,
-            mediaUrl,
-            description,
-            categoryId: parseInt(categoryId),
-            authorId : parseInt(authorId)
-        }
-    })
+        const board = await prisma.board.create({
+            data: {
+                title,
+                mediaUrl,
+                description,
+                categoryId: parseInt(categoryId),
+                authorId : parseInt(authorId)
+            }
+        })
 
-    return res.json(req.body);
+        return res.json(req.body);
+    } catch (e) {
+        console.log(e)
+    }
+
 });
 
 routes.delete("/:id" , async (req, res) => {
-    const id = parseInt(req.params.id);
+    try {
+        const id = parseInt(req.params.id);
+        const deleted = await prisma.board.delete({
+            where: { id: id }
+        })
 
-    const deleted = await prisma.board.delete({
-        where: { id: id }
-    })
+        return res.json({"text": "successful"})
+    } catch (e) {
+        console.log(e)
+    }
 
-    return res.json({"text": "successful"})
 })
 
 module.exports = routes;
