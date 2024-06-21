@@ -20,7 +20,9 @@ import styles from "./CardPage.module.css"
 
 
 async function addNewCardApi(card){
-    const url = `http://127.0.0.1:3000/cards/`
+    const DATABASE_URL = import.meta.env.VITE_DATABASE_URL
+
+    const url = `${DATABASE_URL}/cards/`
 
 
     const options = {

@@ -8,8 +8,9 @@ async function getUserName(id) {
         return "guest"
     }
 
+    const DATABASE_URL = import.meta.env.VITE_DATABASE_URL
 
-    const url = `http://127.0.0.1:3000/users/${id}`
+    const url = `${DATABASE_URL}/users/${id}`
 
     const options = {
         method: "GET",

@@ -8,7 +8,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faX, faTrash, faHeart, faUpDown, faArrowUp, faComment } from "@fortawesome/free-solid-svg-icons"
 
 async function deleteCard (id) {
-    const url = `http://127.0.0.1:3000/cards/${id}`
+    const DATABASE_URL = import.meta.env.VITE_DATABASE_URL
+    const url = `${DATABASE_URL}/cards/${id}`
 
 
     const options = {

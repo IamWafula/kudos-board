@@ -13,21 +13,22 @@ import AuthModal from "../../components/authModal/AuthModal";
 
 // could get this to outside helper function
 async function getAllBoards(){
-  const url = "http://127.0.0.1:3000/board"
+  const DATABASE_URL = import.meta.env.VITE_DATABASE_URL
+
+  const url = `${DATABASE_URL}/board`
 
   const options = {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     }
-    // body: JSON.stringify({
-    //   imgUrl: "https://picsum.photos/200/300?random=3",
-    //   caption: "a brand new photo"
-    // })
   }
 
   const allBoards = await fetch(url, options)
+  console.log(allBoards)
   const resJson = await allBoards.json()
+
+
   return resJson
 }
 

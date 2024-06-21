@@ -11,7 +11,8 @@ import CardPage from '../../pages/cardsPage/CardPage';
 
 
 async function deleteBoard (id) {
-    const url = `http://127.0.0.1:3000/board/${id}`
+    const DATABASE_URL = import.meta.env.VITE_DATABASE_URL
+    const url = `${DATABASE_URL}/board/${id}`
 
 
     const options = {
@@ -36,6 +37,7 @@ function Board(props) {
     const description = props.description;
     const board_id = props.board_id
     const cards = props.cards
+    const title = props.title
 
     const [favorited, setFavorited] = useState(false)
 
@@ -98,6 +100,7 @@ function Board(props) {
                 )
             }
             <img src={imageUrl}></img>
+            <h4>{title}</h4>
             <p> {description} </p>
         </div>
     )

@@ -13,10 +13,11 @@ import { Navigate, useLocation } from "react-router-dom";
 
 // could get this to outside helper function
 async function getAllBoardsFiltered(term, id){
-  let url = `http://127.0.0.1:3000/filter/${term}`
+  const DATABASE_URL = import.meta.env.VITE_DATABASE_URL
 
+  let url = `${DATABASE_URL}/filter/${term}`
   if (term == "my boards"){
-    url = `http://127.0.0.1:3000/filter/myboards/${id}`
+    url = `${DATABASE_URL}/filter/myboards/${id}`
   }
 
   const options = {
@@ -32,8 +33,28 @@ async function getAllBoardsFiltered(term, id){
   return resJson
 }
 
+async function getSearchedBoards(term){
+  const DATABASE_URL = import.meta.env.VITE_DATABASE_URL
+
+  const url = `${DATABASE_URL}/board/search/${term}`
+
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    }
+  }
+
+  const allBoards = await fetch(url, options)
+  const resJson = await allBoards.json()
+
+  return resJson
+}
+
 async function addNewBoardApi(board){
-  const url = `http://127.0.0.1:3000/board/`
+  const DATABASE_URL = import.meta.env.VITE_DATABASE_URL
+
+  const url = `${DATABASE_URL}/board/`
 
 
   const options = {
@@ -46,7 +67,6 @@ async function addNewBoardApi(board){
 
   const allBoards = await fetch(url, options)
   const resJson = await allBoards.json()
-  console.log(resJson)
   return resJson
 }
 
@@ -80,6 +100,7 @@ function BoardPage (props) {
         getAllBoardsFiltered(filter.toLowerCase(), user.id)
         .then(data => {
           if (!data.error) {
+            setAllBoards([])
             setAllBoards(data)
           }
         })
@@ -112,8 +133,12 @@ function BoardPage (props) {
 
   useEffect(() => {
     if (searchTerm){
-      // implement search later
       setFilter("")
+
+      getSearchedBoards(searchTerm)
+        .then((data) => {
+          setAllBoards(data)
+        })
     }
   }, [searchTerm])
 
@@ -167,7 +192,7 @@ function BoardPage (props) {
 
           {
             allBoards.map( (board) => {
-              return( <Board key={board.id} setCardPage={setCardPageDetails} img={board.mediaUrl} description={board.description} board_id={board.id} cards={board.cards} authorId={board.authorId} setDeleted={setDeleted} user={user} /> )
+              return( <Board key={board.id} setCardPage={setCardPageDetails} img={board.mediaUrl} description={board.description} board_id={board.id} cards={board.cards} authorId={board.authorId} setDeleted={setDeleted} user={user} title={board.title}/> )
             })
           }
         </div>

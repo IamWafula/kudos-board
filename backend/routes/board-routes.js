@@ -7,10 +7,20 @@ const {PrismaClient, Prisma}= require('@prisma/client');
 const prisma = new PrismaClient();
 
 
-// cors imports
-// const cors = require('cors')
+routes.get('/search/:board_name', async (req, res) => {
 
-// routes.use(cors())
+    const search_term = req.params.board_name;
+
+    const boards = await prisma.board.findMany(
+
+        {where: {
+            title : {
+                search: search_term
+            }
+         }}
+    );
+    return res.json(boards);
+});
 
 routes.get('/', async (req, res) => {
     const boards = await prisma.board.findMany(
@@ -20,6 +30,7 @@ routes.get('/', async (req, res) => {
     );
     return res.json(boards);
 });
+
 
 routes.get('/:board_id', async (req, res) => {
     const board_id = parseInt(req.params.board_id);

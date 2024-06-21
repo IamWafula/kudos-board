@@ -15,7 +15,8 @@ import { useState, useEffect } from "react";
 
 // could get this to outside helper function
 async function addUser(email){
-    const url = `http://127.0.0.1:3000/users/`
+    const DATABASE_URL = import.meta.env.VITE_DATABASE_URL
+    const url = `${DATABASE_URL}/users/`
 
 
     const options = {
@@ -35,7 +36,8 @@ async function addUser(email){
 }
 
 async function getUserId(email){
-    const url = `http://127.0.0.1:3000/users/username/${email}`
+    const DATABASE_URL = import.meta.env.VITE_DATABASE_URL
+    const url = `${DATABASE_URL}/users/username/${email}`
 
 
     const options = {

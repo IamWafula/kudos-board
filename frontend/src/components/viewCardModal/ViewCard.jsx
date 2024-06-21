@@ -13,7 +13,9 @@ import { useEffect, useState } from "react";
 
 // could get this to outside helper function
 async function getAllCardDetails(id){
-    const url = `http://127.0.0.1:3000/cards/${id}`
+    const DATABASE_URL = import.meta.env.VITE_DATABASE_URL
+
+    const url = `${DATABASE_URL}/cards/${id}`
 
 
     const options = {
@@ -30,7 +32,9 @@ async function getAllCardDetails(id){
 }
 
 async function submitNewComment (comment, card_id, authorId) {
-    const url = `http://127.0.0.1:3000/comments/`
+    const DATABASE_URL = import.meta.env.VITE_DATABASE_URL
+
+    const url = `${DATABASE_URL}/comments/`
 
 
     const options = {
@@ -87,7 +91,7 @@ function ViewCard(props){
             .then(data => {
                 setCardComments(data)
             })
-    }, props.card)
+    }, [props.card])
 
     return (
         <div id={styles.card_modal}>
