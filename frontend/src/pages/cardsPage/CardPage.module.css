@@ -1,0 +1,44 @@
+#cardPage {
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    align-items: center;
+
+    grid-template-areas:
+        ". . topbar"
+        "aside main main"
+        "aside main main"
+        "aside main main"
+        "footer footer footer";
+
+    grid-template-columns: 2fr 5fr 1fr;
+    grid-template-rows: 1fr 2fr 2fr 2fr 1fr ;
+}
+
+#header {
+    grid-area: topbar ;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 20px
+  }
+#board{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-area: aside;
+    height: 100%;
+}
+
+#cards{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    grid-area: main;
+    height: 100%;
+}
+#footer{grid-area: footer;}
+
+#add_card {
+    width: 200px;
+}

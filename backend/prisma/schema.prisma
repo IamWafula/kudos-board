@@ -1,4 +1,4 @@
-// This is your Prisma schema file,
+ // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
@@ -6,6 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 datasource db {
@@ -30,9 +31,9 @@ model Board {
   mediaUrl   String @default("https://uploads.dailydot.com/2018/10/olli-the-polite-cat.jpg?auto=compress&fm=pjpg")
   description String
   date_published DateTime @default(now())
-  category Category @relation(fields: [categoryId], references: [id])
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   categoryId Int
-  author User @relation(fields: [authorId], references: [id])
+  author User @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId Int
   cards Card[]
 }
@@ -50,9 +51,9 @@ model Card {
   gifUrl   String @default("https://uploads.dailydot.com/2018/10/olli-the-polite-cat.jpg?auto=compress&fm=pjpg")
   date_published DateTime @default(now())
   upvotes  Int @default(0)
-  author   User? @relation(fields: [authorId], references: [id])
+  author   User? @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId Int? // relation scalar field  (used in the `@relation` attribute above)
-  board    Board @relation(fields: [boardId], references: [id])
+  board    Board @relation(fields: [boardId], references: [id], onDelete: Cascade)
   boardId Int
   comments Comment[]
 }
@@ -61,9 +62,9 @@ model Card {
 model Comment {
   id       Int  @id @default(autoincrement())
   text String
-  author User @relation(fields: [authorId], references: [id])
+  author User @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId Int
-  card Card @relation(fields: [cardId], references: [id])
+  card Card @relation(fields: [cardId], references: [id], onDelete: Cascade)
   cardId Int
   date_published DateTime @default(now())
 }

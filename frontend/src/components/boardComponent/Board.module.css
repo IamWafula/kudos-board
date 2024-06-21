@@ -1,0 +1,48 @@
+.main_board {
+    height: 350px;
+    max-width: 160px;
+    text-align: center;
+    cursor: pointer;
+    background-color: black;
+    padding: 10px 10px 0 10px;
+    border-radius: 20px;;
+    margin: 0 20px 0 20px;
+
+
+    svg {
+        padding: 5px;
+        border-radius: 100%;
+        margin: 0 5px 0 0;
+        float: right;
+        cursor: crosshair;
+    }
+
+}
+
+.main_page_board {
+    height: fit-content;
+    max-width: 160px;
+    text-align: center;
+    cursor: pointer;
+    background-color: black;
+    padding: 10px 10px 15px 10px;
+    border-radius: 20px;;
+    margin: 0 20px 0 20px;
+
+
+    svg {
+        padding: 5px;
+        border-radius: 100%;
+        margin: 0 5px 0 0;
+        float: right;
+        cursor: crosshair;
+    }
+
+}
+
+img{
+    height: 150px;
+    width: 150px;
+    border-radius: 100%;
+    object-fit: cover;
+}
