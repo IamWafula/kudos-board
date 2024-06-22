@@ -1,10 +1,8 @@
-📝 `NOTE` Use this template to initialize the contents of a README.md file for your application. As you work on your assignment over the course of the week, update the required or stretch features lists to indicate which features you have completed by changing `[ ]` to `[x]`. (🚫 Remove this paragraph before submitting your assignment.)
-
 ## Unit Assignment: Kudos Board
 
-Submitted by: **NAME**
+Submitted by: **Ian Wafula**
 
-Deployed Application (optional): [Kudos Board Deployed Site](ADD_LINK_HERE)
+Deployed Application (optional): [Kudos Board Deployed Site](https://kudos-board-xq6y.onrender.com/boards)
 
 ### Application Features
 
@@ -17,7 +15,7 @@ Deployed Application (optional): [Kudos Board Deployed Site](ADD_LINK_HERE)
   - [x] Users can click on a category (recent, celebration, thank you, inspiration) to filter the boards.
     - [x] Recent displays most recently created boards.
     - [x] Other categories display boards of that type.
-  - [ ] Users can search for a board by name.
+  - [x] Users can search for a board by name.
   - [x] Users can click on a board to navigate to a new page containing that board.
   - [x] Users can create a new board.
     - [x] Boards should have a title, category, and author (optional).
@@ -50,28 +48,45 @@ Deployed Application (optional): [Kudos Board Deployed Site](ADD_LINK_HERE)
 
 ### Walkthrough Video
 
-`TODO://` Add the embedded URL code to your animated app walkthrough below, `ADD_EMBEDDED_CODE_HERE`. Make sure the video or gif actually renders and animates when viewing this README. (🚫 Remove this paragraph after adding walkthrough video)
+[!Project Demo](https://youtu.be/XlrNzaiHlUA)
 
-`ADD_EMBEDDED_CODE_HERE`
 
 ### Reflection
 
 * Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
 
-Add your response here
+`The discussion on Databases was a great foundation in exploring model relations and integrating front end and back end later. I felt very unprepared for designing SQL models and building relations solely based on Codepath Labs. I was also left in the dark with using routes, as a lot of vital information was implied by the videos by not explicitly discussed.`
 
+<hr>
 * If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
 
-Add your response here
+`I could have implemented a lot more robust features:`
 
+`Input validation for submitting new forms so that there is consistent data`
+
+`Ensuring that username and password are consistent throughout the components, I was not able to do this since this feature was pulled as a requirement on Thursday. I used Google Firebase for email and password auth instead of username and password`
+
+`Having accessibility features`
+
+`Fixing a lot of bugs consistent with building a full stack application with a 'move fast' approach`
+
+`Creating a separate model for upvotes, so that a user may only upvote cards for other users, not their own`
+
+`...other edge cases`
+
+<hr>
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
-Add your response here
+`I noticed a peer using open-source CSS for their styling,rather than designing from scratch. This would save me a lot of time`
+<hr>
 
-### Open-source libraries used
+### Libraries used
 
-- Add any links to open-source libraries used in your project.
+- Google Firebase for UserAuth (https://firebase.google.com/)
+- Font Awesome Library
 
 ### Shout out
 
-Give a shout out to somebody from your cohort that especially helped you during your project. This can be a fellow peer, instructor, TA, mentor, etc.
+- Sammy, for teaching me how to use CSS modules
+- Kimberly [Manager], for setting up bi-weekly meetings (twice a week)
+- Marvin [Peer], great ideas on how to design API endpoits
